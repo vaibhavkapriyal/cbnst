@@ -43,11 +43,11 @@ int main()
 
         if(fabs(f(x1))<err)
         {
-            printf("Iteration: %d   Roots: %d\n",i,x1);
+            printf("Iteration: %d   Roots: %f\n",i,x1);
             printf("Root of the Equation: %f\n",x1);
             return 0;
         }
-        printf("Iteration: %d   Roots: %d\n",i,x1);
+        printf("Iteration: %d   Roots: %f\n",i,x1);
         x0=x1;
         if(i>=max)
         {

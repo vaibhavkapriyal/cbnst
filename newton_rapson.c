@@ -1,48 +1,66 @@
-#include<stdio.h>
-#include<math.h>
+#include <stdio.h>
+#include <math.h>
 
 float f(float x)
 {
-    return((x*x*x)-x-1);
+    //return ((3*x)-cos(x)-1);
+    return (x*sin(x)+cos(x));
+}
+
+float g(float x)
+{
+    //return (3+sin(x));
+    return (x*cos(x));
 }
 
 int main()
 {
-    float x1,x2,x;
-    int flag=1;
+    float a,b,x1,x0,err=0;
+    int max,i=0;
+
+    printf("Enter the Maximum no. of Iterations: ");
+    scanf("%d",&max);
+
     do
     {
-        printf("Enter any two values: ");
-        scanf("%f %f",&x1,&x2);
+        printf("Enter the Values of a & b: ");
+        scanf("%f %f",&a,&b);
 
-        if((f(x1)*f(x2))<0)
+        if(f(a)*f(b)<0)
         {
-            flag=0;
+            break;
         }
         else
-        printf("Invalid Roots\n");
-    } while (flag);
+            printf("Invalid root......try again!!\n");
+    } while (1);
 
-    flag=1;
-     float err,mid;
-     int itr=0;
-     printf("Enter the allowed error value: ");
-     scanf("%f",&err);
-     do
-     {
-        itr++;
-        mid=(x1+x2)/2;
-        printf("Iteration no : %d,roots are : %f %f, value at current iteration %f\n",itr,x1,x2,f(mid));
-        if(fabs(f(mid))<err)
+    x0=(a+b)/2;
+
+    printf("Enter the allowed Error Value: ");
+    scanf("%f",&err);
+    do
+    {
+        i=i+1;
+        if(g(x0)==0)
         {
-            flag=0;
-            printf("Roots of the equation are : %f",mid);
+            printf("Mathematical Error\n");
+            return 0;
         }
-        if(f(x1)*f(mid)<0)
-            x2=mid;
-        else if(f(mid)*f(x2)<0)
-            x1=mid;
-     } while (flag);
-     
-    return 0;
+        x1=x0-(f(x0)/g(x0));
+
+        if(fabs(f(x1))<err)
+        {
+            printf("Iteration: %d   Roots: %f\n",i,x1);
+            printf("Root of the Equation: %f\n",x1);
+            return 0;
+        }
+        printf("Iteration: %d   Roots: %f\n",i,x1);
+        x0=x1;
+        if(i>=max)
+        {
+            printf("Maximum Iteration reached!!!!\n");
+            return 0;
+        }
+    } while (1);
+    
 }

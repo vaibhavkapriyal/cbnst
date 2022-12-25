@@ -18,7 +18,7 @@ int main()
     scanf("%d",&n);
 
     sum=sum+(y(a)+y(b));
-    h=(a+b)/n;
+    h=(b-a)/n;
 
     for(i=a+h;i<b;i=i+h)
     {
